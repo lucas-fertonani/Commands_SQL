@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: my-postgres-db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./person.sql:/sqls/person.sql:ro
+      - ./car.sql:/sqls/car.sql:ro
+      
+    restart: always
+
+volumes:
+  pgdata:
+
